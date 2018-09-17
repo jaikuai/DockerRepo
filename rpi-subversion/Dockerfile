@@ -1,4 +1,4 @@
-FROM alpine
+FROM hypriot/rpi-alpine-scratch
 
 ENV TZ="Asia/Shanghai" USER="svn" PASS="123456"
 

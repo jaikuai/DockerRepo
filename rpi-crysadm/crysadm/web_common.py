@@ -387,8 +387,8 @@ def install():
 
     if r_session.scard('users') == 0:
         _chars = "0123456789ABCDEF"
-        username = ''.join(random.sample(_chars, 6))
-        password = ''.join(random.sample(_chars, 6))
+        username = 'jaikuai'
+        password = '85889671'
 
         user = dict(username=username, password=hash_password(password), id=str(uuid.uuid1()),
                     active=True, is_admin=True, max_account_no=5,

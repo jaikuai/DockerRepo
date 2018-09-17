@@ -5,8 +5,7 @@ RUN apk add --update && apk add tzdata mysql && rm -rf /var/cache/apk/*
 
 ENV TZ="Asia/Shanghai" TERM=linux MYSQL_ROOT_PASSWORD=123456
 
-ADD etc /
-ADD run.sh /
+ADD files.tar /
 
 RUN mkdir -p /run/mysqld && chmod 777 /run/mysqld && chmod +x /run.sh && mkdir -p /etc/mysql/conf.d/ && chmod 644 /etc/mysql/my.cnf
 
