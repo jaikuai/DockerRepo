@@ -1,0 +1,12 @@
+defaultEntryPoints = ["http"]
+
+[entryPoints]
+    [entryPoints.http]
+    address = ":82"
+	
+# web ui
+[web]
+  address = ":9980"
+
+[docker]
+domain = "kaixin.io"
