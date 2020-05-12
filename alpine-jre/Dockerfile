@@ -1,4 +1,4 @@
-FROM rpi.it5000.com:5000/java:8-jre-alpine
+FROM java:8-jre-alpine
 
 ENV TZ="Asia/Shanghai" PRO_ENV=dev PRO_NAME=App
 
