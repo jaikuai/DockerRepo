@@ -1,3 +1,3 @@
-FROM maven:3.6.0-jdk-8-alpine
+FROM cschockaert/docker-npm-maven
 
 ADD ./settings-docker.xml /root/.m2/
