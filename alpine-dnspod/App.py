@@ -15,9 +15,13 @@ wait_time = os.environ.get("TIME")
 
 def do():
     ssl._create_default_https_context = ssl._create_unverified_context
-    ## Get MyIP
-    s = urllib.request.urlopen("http://pv.sohu.com/cityjson").read().decode('gbk')
-    ip_data = json.loads(str(s)[19:-1])
+    try:
+        ## Get MyIP
+        s = urllib.request.urlopen("http://pv.sohu.com/cityjson").read().decode('gbk')
+        ip_data = json.loads(str(s)[19:-1])
+    except Exception as e:
+        print('获取IP异常')
+        return
     
     ## Get Domain Info
     param = urllib.parse.urlencode({"login_token": token, "format": "json", "domain": domain})
@@ -33,7 +37,7 @@ def do():
             break
     ## 判断是否更新
     if ip_data["cip"] == "":
-        print("Not get IP!")
+        print("未获得当前IP")
         pass
     elif record_ip == ip_data["cip"]:
         pass
