@@ -44,7 +44,7 @@ def do():
     elif record_id != "":
         params = urllib.parse.urlencode({"login_token": token, "format": "json", "domain": domain, "record_id": record_id,"sub_domain": name, "record_type": "A", "record_line": "默认", "value": ip_data["cip"]})
         data = urllib.request.urlopen("https://dnsapi.cn/Record.Modify", params.encode('ascii')).read().decode('UTF-8')
-        if data["status"]["code"] == "1" :
+        if data["status"]["code"] == 1 :
             print("Update IP:" + ip_data["cip"])
         else:
             print(data["status"]["message"])
