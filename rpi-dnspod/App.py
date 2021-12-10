@@ -36,6 +36,7 @@ def do():
         print("Not get IP!")
         pass
     elif record_ip == ip_data["cip"]:
+        print("the same ip : %s " % ip_data["cip"])
         pass
     elif record_id != "":
         params = urllib.parse.urlencode({"login_token": token, "format": "json", "domain": domain, "record_id": record_id,"sub_domain": name, "record_type": "A", "record_line": "默认", "value": ip_data["cip"]})
