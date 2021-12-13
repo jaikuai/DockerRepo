@@ -1,10 +1,11 @@
-# coding:utf8
+# coding=utf-8
 import json
 import urllib.request
 import urllib
 import threading
 import os
 import ssl
+import json
 
 ## 设定域名token和二级域名
 token     = os.environ.get("TOKEN")
@@ -31,7 +32,7 @@ def do():
     record_id = ""
     record_ip = ""
     for obj in jdata["records"]:
-        if obj["name"] == name:
+        if obj["name"] == name and obj['status'] == 'enable' and obj['type'] == 'A':
             record_id = obj["id"]
             record_ip = obj["value"]
             break
@@ -40,14 +41,16 @@ def do():
         print("未获得当前IP")
         pass
     elif record_ip == ip_data["cip"]:
+        print("IP相同 %s = %s，跳过" % (record_ip,ip_data["cip"]))
         pass
     elif record_id != "":
         params = urllib.parse.urlencode({"login_token": token, "format": "json", "domain": domain, "record_id": record_id,"sub_domain": name, "record_type": "A", "record_line": "默认", "value": ip_data["cip"]})
         data = urllib.request.urlopen("https://dnsapi.cn/Record.Modify", params.encode('ascii')).read().decode('UTF-8')
-        if data["status"]["code"] == 1 :
+        res = json.loads(data)
+        if res["status"]["code"] == "1" :
             print("Update IP:" + ip_data["cip"])
         else:
-            print(data["status"]["message"])
+            print(res["status"]["message"])
 
 ## 定时任务
 timer = threading.Timer(int(wait_time), do)
