@@ -19,8 +19,9 @@ RUN echo "deb-src http://mirrors.aliyun.com/ubuntu/ hirsute-proposed main restri
 
 RUN apt-get update -y && DEBIAN_FRONTEND=noninteractive apt-get install -y libaio1 python3 python3-pip proj-bin
 
-RUN pip3 install -i https://mirrors.aliyun.com/pypi/simple pyproj==3.1.0 xlrd xlutils pymysql requests cx_oracle
+RUN pip3 install -i https://mirrors.aliyun.com/pypi/simple pyproj==3.1.0 xlrd xlutils pymysql requests cx_oracle apscheduler
 
 RUN cp -rf /home/instantclient_21_4/lib/lib* /usr/lib/
 
-ENTRYPOINT /usr/bin/python3
+# ENTRYPOINT /usr/bin/python3
+CMD ["/bin/sh","-c","/usr/bin/python3 main.py"]
