@@ -21,7 +21,7 @@ RUN apt-get update -y && DEBIAN_FRONTEND=noninteractive apt-get install -y libai
 
 RUN python3 -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade pip
 
-RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pyproj==3.1.0 xlrd xlutils pymysql requests cx_oracle apscheduler pandas pyecharts web.py
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pyproj==3.1.0 xlrd xlutils pymysql requests cx_oracle apscheduler pandas pyecharts web.py elasticsearch
 
 RUN wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz && tar -xvf ta-lib-0.4.0-src.tar.gz && cd ta-lib && ./configure --prefix=/usr && make && make install
 RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple ta-lib
