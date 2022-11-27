@@ -1,6 +1,0 @@
-2020-05-12 10:54:42.962 INFO  org.glowroot - Glowroot version: 0.13.6, built 2020-03-01 01:25:31 +0000
-2020-05-12 10:54:42.967 INFO  org.glowroot - Java version: 1.8.0_121 (Oracle Corporation / Mac OS X)
-2020-05-12 10:54:42.970 INFO  org.glowroot - Java args: -javaagent:glowroot/glowroot.jar
-2020-05-12 10:54:47.442 INFO  org.glowroot - creating glowroot schema...
-2020-05-12 10:54:47.681 INFO  org.glowroot - glowroot schema created
-2020-05-12 10:54:48.050 INFO  org.glowroot - UI listening on 127.0.0.1:4000 (to access the UI from remote machines, change the bind address to 0.0.0.0, either in the Glowroot UI under Configuration > Web or directly in the admin.json file, and then restart JVM to take effect)
