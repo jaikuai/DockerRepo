@@ -9,6 +9,7 @@ import ssl
 import json
 import requests
 
+
 ## 设定域名token和二级域名
 token     = os.environ.get("TOKEN")
 domain    = os.environ.get("DOMAIN")
@@ -39,7 +40,7 @@ def do():
         # s = urllib.request.urlopen("http://pv.sohu.com/cityjson").read().decode('gbk')
         # ip_data = json.loads(str(s)[19:-1])
         # ip = ip
-        ip = urllib.request.urlopen("https://ipv4.icanhazip.com").read().decode('gbk')
+        ip = urllib.request.urlopen("https://ipv4.icanhazip.com", timeout=10).read().decode('gbk')
     except Exception as e:
         print('%s 获取本机IP异常' % now)
         dingding_talk('%s 获取本机IP异常' % now)
@@ -48,7 +49,7 @@ def do():
     try:
         ## Get Domain Info
         param = urllib.parse.urlencode({"login_token": token, "format": "json", "domain": domain})
-        data = urllib.request.urlopen("https://dnsapi.cn/Record.List", param.encode('ascii')).read().decode('UTF-8')
+        data = urllib.request.urlopen("https://dnsapi.cn/Record.List", timeout=10).read().decode('UTF-8')
         jdata = json.loads(data)
 
         record_id = ""
@@ -66,7 +67,7 @@ def do():
             pass
         else:
             params = urllib.parse.urlencode({"login_token": token, "format": "json", "domain": domain, "record_id": record_id,"sub_domain": name, "record_type": "A", "record_line": "默认", "value": ip})
-            data = urllib.request.urlopen("https://dnsapi.cn/Record.Modify", params.encode('ascii')).read().decode('UTF-8')
+            data = urllib.request.urlopen("https://dnsapi.cn/Record.Modify", timeout=10).read().decode('UTF-8')
             res = json.loads(data)
             if res["status"]["code"] == "1" :
                 print("%s Update IP: %s -> %s" % (now, record_ip, ip))
