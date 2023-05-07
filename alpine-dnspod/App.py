@@ -49,7 +49,7 @@ def do():
     try:
         ## Get Domain Info
         param = urllib.parse.urlencode({"login_token": token, "format": "json", "domain": domain})
-        data = urllib.request.urlopen("https://dnsapi.cn/Record.List", timeout=10).read().decode('UTF-8')
+        data = urllib.request.urlopen("https://dnsapi.cn/Record.List", params.encode('ascii')).read().decode('UTF-8')
         jdata = json.loads(data)
 
         record_id = ""
@@ -67,7 +67,7 @@ def do():
             pass
         else:
             params = urllib.parse.urlencode({"login_token": token, "format": "json", "domain": domain, "record_id": record_id,"sub_domain": name, "record_type": "A", "record_line": "默认", "value": ip})
-            data = urllib.request.urlopen("https://dnsapi.cn/Record.Modify", timeout=10).read().decode('UTF-8')
+            data = urllib.request.urlopen("https://dnsapi.cn/Record.Modify", params.encode('ascii')).read().decode('UTF-8')
             res = json.loads(data)
             if res["status"]["code"] == "1" :
                 print("%s Update IP: %s -> %s" % (now, record_ip, ip))
