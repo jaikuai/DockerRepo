@@ -1,6 +1,18 @@
-FROM rpi.it5000.com:5000/java:8-jre-alpine
+FROM java:8u111-alpine
 
-ADD pinpoint-agent-2.4.2 /home/pinpoint-agent-2.4.2
+ENV TZ="Asia/Shanghai" PRO_ENV=dev PRO_NAME=App
+
+RUN echo -e "https://mirror.tuna.tsinghua.edu.cn/alpine/v3.4/main\n\
+https://mirror.tuna.tsinghua.edu.cn/alpine/v3.4/community" > /etc/apk/repositories
+
+
 WORKDIR /home
 
-CMD ["/bin/sh","-c","/usr/bin/java -jar -javaagent:/home/pinpoint-agent-2.4.2/pinpoint-bootstrap-2.4.2.jar -Dpinpoint.agentId=${PRO_NAME} -Dpinpoint.applicationName=${PRO_NAME} /home/App.jar --spring.profiles.active=${PRO_ENV} --spring.application.name=${PRO_NAME}"]
+ADD pinpoint-agent-2.4.2 /home/pinpoint-agent-2.4.2
+ADD start.sh /home/
+
+RUN apk --update add tzdata curl bash ttf-dejavu && rm -rf /var/cache/apk/* && chmod a+x /home/start.sh
+
+EXPOSE 8082
+
+CMD ["/home/start.sh"]
