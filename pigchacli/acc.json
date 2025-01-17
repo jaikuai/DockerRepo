@@ -1,0 +1,9 @@
+{
+  "server": "120.232.233.6",
+  "server_port": 42599,
+  "password": "password",
+  "method": "chacha20-ietf-poly1305",
+  "local_address": "0.0.0.0",
+  "local_port": 15777,
+  "token": "At1XKaxec8VEJ4m6P4Pi3SovqU2yVCgA"
+}
